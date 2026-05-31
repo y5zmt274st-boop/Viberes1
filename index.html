@@ -690,8 +690,16 @@ async function saveDrink(event){
     try {
         if(editingDrinkId) {
             await db.collection("drinks").doc(editingDrinkId).update({ name, price, info, category });
-        } else {
-            await db.collection("drinks").add({ name, price, info, category, createdAt: new Date() });
+        }
+        else 
+            await db.collection("drinks").add({
+        name,
+        price,
+        info,
+        category,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+}
         }
         loadDrinks();
         closeDrinkModal();
