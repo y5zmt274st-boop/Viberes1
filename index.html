@@ -4,138 +4,180 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>VIBES CLUB</title>
 
 <style>
-body {
-    margin: 0;
-    background: #111;
-    color: white;
-    font-family: Arial, sans-serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-.header {
-    text-align: center;
-    padding: 20px;
+body{
+    font-family:Arial,sans-serif;
+    background:#111;
+    color:#fff;
 }
 
-.header h1 {
-    margin: 0;
-    font-size: 28px;
-    letter-spacing: 2px;
+/* HEADER */
+.header{
+    text-align:center;
+    padding:25px;
+    background:#1a1a1a;
+    border-bottom:1px solid #333;
 }
 
-#google_translate_element {
-    text-align: center;
-    margin: 10px;
+.header h1{
+    font-size:30px;
+    letter-spacing:3px;
 }
 
-.settings-btn {
-    position: fixed;
-    top: 12px;
-    right: 12px;
-    background: #2a2a2a;
-    padding: 10px;
-    border-radius: 12px;
-    cursor: pointer;
-    font-size: 18px;
+/* SETTINGS */
+.settings-btn{
+    position:fixed;
+    top:15px;
+    right:15px;
+    background:#222;
+    width:45px;
+    height:45px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    font-size:22px;
+    z-index:999;
 }
 
-.settings {
-    position: fixed;
-    top: 55px;
-    right: 12px;
-    background: #1e1e1e;
-    padding: 10px;
-    border-radius: 12px;
-    display: none;
-    width: 160px;
+.settings{
+    position:fixed;
+    top:70px;
+    right:15px;
+    background:#1e1e1e;
+    border-radius:12px;
+    width:180px;
+    display:none;
+    overflow:hidden;
+    z-index:999;
 }
 
-.settings.active {
-    display: block;
+.settings.active{
+    display:block;
 }
 
-.lang {
-    padding: 8px;
-    cursor: pointer;
-    border-radius: 8px;
+.lang{
+    padding:12px;
+    cursor:pointer;
+    transition:.2s;
 }
 
-.lang:hover {
-    background: #333;
+.lang:hover{
+    background:#333;
 }
 
-.tabs {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 15px;
+/* TABS */
+.tabs{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+    padding:15px;
 }
 
-.tab {
-    background: #222;
-    padding: 10px 16px;
-    border-radius: 10px;
-    cursor: pointer;
+.tab{
+    background:#222;
+    padding:10px 15px;
+    border-radius:10px;
+    cursor:pointer;
 }
 
-.tab.active {
-    background: #ff0055;
+.tab.active{
+    background:#ff3b3b;
 }
 
-.menu {
-    display: none;
-    max-width: 750px;
-    margin: auto;
-    padding: 15px;
+/* MENU */
+.menu{
+    display:none;
+    max-width:800px;
+    margin:auto;
+    padding:15px;
 }
 
-.menu.active {
-    display: block;
+.menu.active{
+    display:block;
 }
 
-.item {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px;
-    margin-bottom: 8px;
-    background: #1e1e1e;
-    border-radius: 10px;
+.item{
+    background:#1e1e1e;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:10px;
+    display:flex;
+    justify-content:space-between;
 }
 
-.footer {
-    text-align: center;
-    margin-top: 30px;
-    padding: 20px;
+.price{
+    color:#ff3b3b;
+    font-weight:bold;
 }
 
-.age {
-    color: red;
-    font-weight: bold;
+/* FOOTER */
+.footer{
+    text-align:center;
+    padding:30px 15px;
+    color:#aaa;
+}
+
+.age{
+    color:red;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+/* GOOGLE */
+.goog-te-banner-frame{
+    display:none !important;
+}
+
+body{
+    top:0 !important;
 }
 </style>
 </head>
 
 <body>
 
+<!-- SETTINGS -->
 <div class="settings-btn" onclick="toggleSettings()">⚙️</div>
 
 <div class="settings" id="settings">
-    <div class="lang" onclick="setLang('de')">🇩🇪 Deutsch</div>
-    <div class="lang" onclick="setLang('en')">🇬🇧 English</div>
-    <div class="lang" onclick="setLang('ru')">🇷🇺 Русский</div>
-    <div class="lang" onclick="setLang('pl')">🇵🇱 Polski</div>
+
+    <div class="lang" onclick="setLang('de')">
+        🇩🇪 Deutsch
+    </div>
+
+    <div class="lang" onclick="setLang('en')">
+        🇬🇧 English
+    </div>
+
+    <div class="lang" onclick="setLang('ru')">
+        🇷🇺 Русский
+    </div>
+
+    <div class="lang" onclick="setLang('pl')">
+        🇵🇱 Polski
+    </div>
+
+    <div id="google_translate_element" style="display:none;"></div>
+
 </div>
 
+<!-- HEADER -->
 <div class="header">
-    <h1 id="title">VIBES CLUB</h1>
+    <h1>VIBES CLUB</h1>
 </div>
 
-<div id="google_translate_element"></div>
-
+<!-- TABS -->
 <div class="tabs">
     <div class="tab active" onclick="openTab(event,'cocktails')">Cocktails</div>
     <div class="tab" onclick="openTab(event,'longdrinks')">Longdrinks</div>
@@ -144,76 +186,103 @@ body {
     <div class="tab" onclick="openTab(event,'flaschen')">Flaschen</div>
 </div>
 
+<!-- COCKTAILS -->
 <div id="cocktails" class="menu active">
+
     <div class="item">
-        <span>Напиток</span>
-        <span>Цена</span>
+        <span>Drink</span>
+        <span class="price">0€</span>
     </div>
+
 </div>
 
+<!-- LONGDRINKS -->
 <div id="longdrinks" class="menu">
+
     <div class="item">
-        <span>Напиток</span>
-        <span>Цена</span>
+        <span>Drink</span>
+        <span class="price">0€</span>
     </div>
+
 </div>
 
+<!-- LIKÖRE -->
 <div id="likor" class="menu">
+
     <div class="item">
-        <span>Напиток</span>
-        <span>Цена</span>
+        <span>Drink</span>
+        <span class="price">0€</span>
     </div>
+
 </div>
 
+<!-- SHOTS -->
 <div id="shots" class="menu">
+
     <div class="item">
-        <span>Напиток</span>
-        <span>Цена</span>
+        <span>Drink</span>
+        <span class="price">0€</span>
     </div>
+
 </div>
 
+<!-- FLASCHEN -->
 <div id="flaschen" class="menu">
+
     <div class="item">
-        <span>Напиток</span>
-        <span>Цена</span>
+        <span>Drink</span>
+        <span class="price">0€</span>
     </div>
+
 </div>
 
+<!-- FOOTER -->
 <div class="footer">
     <div class="age">18+</div>
     <div>VIBES CLUB</div>
 </div>
 
 <script>
-function openTab(event, tab) {
-    document.querySelectorAll('.menu').forEach(menu => {
+function openTab(event, tab){
+
+    document.querySelectorAll('.menu').forEach(menu=>{
         menu.classList.remove('active');
     });
 
-    document.querySelectorAll('.tab').forEach(tabBtn => {
-        tabBtn.classList.remove('active');
+    document.querySelectorAll('.tab').forEach(btn=>{
+        btn.classList.remove('active');
     });
 
     document.getElementById(tab).classList.add('active');
     event.target.classList.add('active');
 }
 
-function toggleSettings() {
+function toggleSettings(){
     document.getElementById('settings').classList.toggle('active');
 }
 
-function setLang(lang) {
-    document.getElementById('settings').classList.remove('active');
-}
-</script>
+function setLang(lang){
 
-<script>
+    let select = document.querySelector(".goog-te-combo");
+
+    if(select){
+        select.value = lang;
+        select.dispatchEvent(new Event("change"));
+    }
+
+    document.getElementById("settings")
+            .classList.remove("active");
+}
+
 function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'de',
-        includedLanguages: 'de,en,ru,pl',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-    }, 'google_translate_element');
+
+    new google.translate.TranslateElement(
+    {
+        pageLanguage:'de',
+        includedLanguages:'de,en,ru,pl',
+        autoDisplay:false
+    },
+    'google_translate_element');
 }
 </script>
 
