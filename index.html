@@ -1,31 +1,13 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VIBES CLUB</title>
-
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #121212;
-  color: white;
-}
-
-/* HEADER */
-.header {
-  text-align: center;
-  padding: 20px;
-  background: #1e1e1e;
-}
-
 .header h1 {
   margin: 0;
   font-size: 28px;
   letter-spacing: 2px;
 }
 
+/* TRANSLATE */
+#google_translate_element {
+  text-align: center;
+  margin: 10px;
 /* SETTINGS */
 .settings-btn {
   position: fixed;
@@ -67,79 +49,34 @@ body {
 }
 
 /* TABS */
-.tabs {
-  display: flex;
+@@ -37,7 +72,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
+  margin: 10px;
   margin: 15px;
 }
 
 .tab {
-  padding: 10px 14px;
-  background: #2a2a2a;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 13px;
-}
-
-.tab.active {
-  background: #ff9800;
-  color: black;
-  font-weight: bold;
-}
-
+@@ -57,7 +92,7 @@
 /* MENU */
 .menu {
   display: none;
+  max-width: 700px;
   max-width: 750px;
   margin: auto;
   padding: 10px;
 }
-
-.menu.active {
-  display: block;
-}
-
-/* ITEM */
-.item {
-  background: #2a2a2a;
-  margin: 10px;
-  padding: 14px 16px;
-  border-radius: 18px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.price {
-  color: #ff9800;
-  font-weight: bold;
-}
-
-/* FOOTER */
-.footer {
-  text-align: center;
-  padding: 20px;
-  margin-top: 30px;
-  background: #1e1e1e;
-  font-size: 13px;
-  opacity: 0.8;
+@@ -92,7 +127,7 @@
 }
 
 .footer .age {
+  color: #ff3b3b;
   color: red;
   font-weight: bold;
   margin-bottom: 5px;
 }
-
-/* MOBILE */
-@media (max-width: 600px) {
-  .header h1 { font-size: 22px; }
-  .tab { font-size: 12px; }
-  .item { font-size: 14px; }
-}
-</style>
-</head>
+@@ -108,33 +143,25 @@
 
 <body>
 
@@ -155,18 +92,37 @@ body {
 
 <!-- HEADER -->
 <div class="header">
+  <h1>VIBES CLUB</h1>
   <h1 id="title">VIBES CLUB</h1>
 </div>
+
+<!-- 🌍 TRANSLATOR -->
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement(
+    {
+      pageLanguage: 'de',
+      includedLanguages: 'de,en,ru,pl',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    },
+    'google_translate_element'
+  );
+}
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <!-- TABS -->
 <div class="tabs">
   <div class="tab active" onclick="openTab('cocktails')">Cocktails</div>
+  <div class="tab" onclick="openTab('long')">Longdrinks</div>
   <div class="tab" onclick="openTab('longdrinks')">Longdrinks</div>
   <div class="tab" onclick="openTab('likor')">Liköre</div>
   <div class="tab" onclick="openTab('shots')">Shots</div>
   <div class="tab" onclick="openTab('flaschen')">Flaschen</div>
-  <div class="tab" onclick="openTab('tablets')">Tablets</div>
-</div>
+@@ -143,42 +170,86 @@ <h1>VIBES CLUB</h1>
 
 <!-- COCKTAILS -->
 <div id="cocktails" class="menu active">
@@ -183,6 +139,7 @@ body {
 </div>
 
 <!-- LONGDRINKS -->
+<div id="long" class="menu">
 <div id="longdrinks" class="menu">
 
   <div class="item"><span>Jack Daniels Cola</span><span class="price">8,00€</span></div>
@@ -190,6 +147,7 @@ body {
   <div class="item"><span>Vodka Red Bull</span><span class="price">7,50€</span></div>
   <div class="item"><span>Vodka Wild Berry</span><span class="price">7,50€</span></div>
   <div class="item"><span>Gin Tonic</span><span class="price">7,50€</span></div>
+  <div class="item"><span>Jack Daniels Cola</span><span class="price">8,00€</span></div>
   <div class="item"><span>Bombay Gin Tonic</span><span class="price">8,00€</span></div>
   <div class="item"><span>Captain Morgan Cola</span><span class="price">7,00€</span></div>
   <div class="item"><span>Havana Club Cola</span><span class="price">7,00€</span></div>
@@ -253,16 +211,11 @@ body {
 </div>
 
 <!-- FOOTER -->
-<div class="footer">
-  <div class="age">🔞 18+ ONLY</div>
-  <div>VIBES CLUB</div>
-  <div>SCHACHTWEG 34, 38440 WOLFSBURG</div>
-</div>
-
-<script>
+@@ -192,10 +263,27 @@ <h1>VIBES CLUB</h1>
 function openTab(tab) {
   document.querySelectorAll('.menu').forEach(m => m.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+
   document.getElementById(tab).classList.add('active');
   event.target.classList.add('active');
 }
@@ -287,4 +240,3 @@ function setLang(lang) {
 </script>
 
 </body>
-</html>
