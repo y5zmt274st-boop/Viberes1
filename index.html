@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIBES CLUB</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #121212;
+  color: white;
+}
+
+/* ШАПКА */
+.header {
+  text-align: center;
+  padding: 25px 15px;
+  background: #1e1e1e;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: 2px;
+}
+
+.tag {
+  color: #ff3b3b;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.address {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-top: 8px;
+}
+
+/* ВКЛАДКИ */
+.tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px;
+}
+
+.tab {
+  padding: 10px 18px;
+  background: #2a2a2a;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+.tab:hover {
+  background: #444;
+}
+
+.tab.active {
+  background: #ff9800;
+  color: black;
+  font-weight: bold;
+}
+
+/* МЕНЮ */
+.menu {
+  display: none;
+  max-width: 600px;
+  margin: auto;
+  padding: 10px;
+}
+
+.menu.active {
+  display: block;
+}
+
+/* КАРТОЧКИ */
+.item {
+  background: #2a2a2a;
+  margin: 10px;
+  padding: 15px 18px;
+  border-radius: 18px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+}
+
+/* ЦЕНА */
+.price {
+  color: #ff9800;
+  font-weight: bold;
+}
+
+/* 📱 АДАПТАЦИЯ ПОД ТЕЛЕФОН */
+@media (max-width: 600px) {
+  .header h1 {
+    font-size: 22px;
+  }
+
+  .item {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .tab {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+}
+</style>
+
+</head>
+<body>
+
+<!-- ШАПКА -->
+<div class="header">
+  <h1>VIBES CLUB</h1>
+  <div class="tag">🔞 18+ ONLY</div>
+  <div class="address">SCHACHTWEG 34, 38440 WOLFSBURG</div>
+</div>
+
+<!-- ВКЛАДКИ -->
+<div class="tabs">
+  <div class="tab active" onclick="openTab('beer')">Пиво</div>
+  <div class="tab" onclick="openTab('shots')">Шоты</div>
+  <div class="tab" onclick="openTab('drinks')">Напитки</div>
+</div>
+
+<!-- ПИВО -->
+<div id="beer" class="menu active">
+
+  <div class="item">
+    <span>Heineken</span>
+    <span class="price">4€</span>
+  </div>
+
+  <div class="item">
+    <span>Corona</span>
+    <span class="price">4.5€</span>
+  </div>
+
+  <!-- ДОБАВЛЯЙ ПИВО ТУТ -->
+</div>
+
+<!-- ШОТЫ -->
+<div id="shots" class="menu">
+
+  <div class="item">
+    <span>Tequila Shot</span>
+    <span class="price">3€</span>
+  </div>
+
+  <div class="item">
+    <span>Vodka Shot</span>
+    <span class="price">2.5€</span>
+  </div>
+
+  <!-- ДОБАВЛЯЙ ШОТЫ ТУТ -->
+</div>
+
+<!-- НАПИТКИ -->
+<div id="drinks" class="menu">
+
+  <div class="item">
+    <span>Coca-Cola</span>
+    <span class="price">2€</span>
+  </div>
+
+  <div class="item">
+    <span>Fanta</span>
+    <span class="price">2€</span>
+  </div>
+
+  <div class="item">
+    <span>Water</span>
+    <span class="price">1.5€</span>
+  </div>
+
+  <!-- ДОБАВЛЯЙ НАПИТКИ ТУТ -->
+</div>
+
+<script>
+function openTab(tabName) {
+  let menus = document.querySelectorAll('.menu');
+  let tabs = document.querySelectorAll('.tab');
+
+  menus.forEach(m => m.classList.remove('active'));
+  tabs.forEach(t => t.classList.remove('active'));
+
+  document.getElementById(tabName).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>
