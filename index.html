@@ -16,61 +16,80 @@ body{
 /* HEADER */
 .header{
     text-align:center;
-    padding:20px;
+    padding: 20px 70px; /* Добавили отступы по бокам, чтобы текст не налезал на кнопки */
     background:#1a1a1a;
     border-bottom:1px solid #333;
     position:relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
 }
 
 .header h1{
     margin:0;
-    font-size:28px;
+    font-size:24px; /* Чуть уменьшили размер, чтобы влезало на мобилках */
+    letter-spacing: 1px;
 }
 
-/* SETTINGS */
+/* SETTINGS & ADMIN BUTTONS */
 .settings-btn{
     position:absolute;
     top:15px;
     right:15px;
-    width:50px;
-    height:50px;
+    width:45px;
+    height:45px;
     background:#222;
-    border-radius:12px;
+    border: 1px solid #333; /* Добавили тонкую рамку */
+    border-radius: 12px;
     display:flex;
     align-items:center;
     justify-content:center;
     cursor:pointer;
-    font-size:22px;
+    font-size:20px;
+    z-index: 1000; /* Кнопка всегда будет сверху */
+    transition: background 0.2s, border-color 0.2s;
 }
 
 .admin-btn{
     position:absolute;
     top:15px;
     left:15px;
-    width:50px;
-    height:50px;
+    width:45px;
+    height:45px;
     background:#222;
-    border-radius:12px;
+    border: 1px solid #333; /* Добавили тонкую рамку */
+    border-radius: 12px;
     display:flex;
     align-items:center;
     justify-content:center;
     cursor:pointer;
-    font-size:22px;
+    font-size:20px;
+    z-index: 1000; /* Кнопка всегда будет сверху */
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.settings-btn:hover, .admin-btn:hover{
+    background: #2a2a2a;
+    border-color: #555;
 }
 
 .admin-btn.logged-in{
     background:#ff4444;
+    border-color: #ff6666;
 }
 
 .settings{
     position:absolute;
-    top:75px;
+    top:70px;
     right:15px;
     width:180px;
     background:#1e1e1e;
     border-radius:12px;
+    border: 1px solid #333;
     display:none;
-    z-index:100;
+    z-index: 1010;
+    overflow: hidden;
 }
 
 .settings.active{
@@ -80,11 +99,13 @@ body{
 .lang{
     padding:12px;
     cursor:pointer;
+    transition: background 0.2s;
 }
 
 .lang:hover{
     background:#333;        
 }
+
 
 /* TABS */
 .tabs{
