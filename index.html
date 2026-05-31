@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -25,6 +24,7 @@ body{
 .header h1{
     margin:0;
     font-size:28px;
+    letter-spacing:2px;
 }
 
 /* SETTINGS */
@@ -132,6 +132,21 @@ body{
     color:red;
     font-weight:bold;
 }
+
+/* FOOTER */
+.footer{
+    text-align:center;
+    padding:25px;
+    color:#aaa;
+    border-top:1px solid #333;
+    margin-top:20px;
+}
+
+.address{
+    margin-top:8px;
+    color:#fff;
+    font-size:14px;
+}
 </style>
 </head>
 
@@ -161,33 +176,15 @@ body{
     <div class="tab" onclick="openTab(event,'flaschen')" id="t5">Flaschen</div>
 </div>
 
-<!-- НАПИТОК МЕНЮ -->
-    <div class="shots" onclick="toggleDrink(this)">
-
-    <div class="drink-header">
-        <span>НАЗВАНИЕ</span>
-        <span class="price">ЦЕНА€</span>
-    </div>
-
-    <div class="drink-info">
-        Состав:<br>
-        ингредиент 1<br>
-        ингредиент 2<br>
-        ингредиент 3<br><br>
-
-        Объём: XXX мл
-    </div>
-
-</div>
+<!-- COCKTAILS -->
 <div id="cocktails" class="menu active">
 
     <div class="drink" onclick="toggleDrink(this)">
         <div class="drink-header">
-            <span id="d1-name">Mojito</span>
+            <span>Mojito</span>
             <span class="price">8,50€</span>
         </div>
-
-        <div class="drink-info" id="d1-info">
+        <div class="drink-info">
             Rum 50ml<br>
             Lime<br>
             Mint<br>
@@ -198,10 +195,23 @@ body{
 
 </div>
 
+<!-- LONGDRINKS -->
 <div id="longdrinks" class="menu"></div>
+
+<!-- LIKÖRE -->
 <div id="likor" class="menu"></div>
+
+<!-- SHOTS -->
 <div id="shots" class="menu"></div>
+
+<!-- FLASCHEN -->
 <div id="flaschen" class="menu"></div>
+
+<!-- FOOTER -->
+<div class="footer">
+    <div>VIBES CLUB</div>
+    <div class="address">Schachtweg 34, 38440 Wolfsburg</div>
+</div>
 
 <script>
 function toggleSettings(){
@@ -221,67 +231,10 @@ function toggleDrink(el){
     el.classList.toggle("active");
 }
 
-/* 🌍 FULL TRANSLATION */
 function setLang(lang){
-
-    const tabs = {
-        de:{c:"Cocktails",l:"Longdrinks",li:"Liköre",s:"Shots",f:"Flaschen"},
-        en:{c:"Cocktails",l:"Long Drinks",li:"Liqueurs",s:"Shots",f:"Bottles"},
-        ru:{c:"Коктейли",l:"Лонгдринки",li:"Ликёры",s:"Шоты",f:"Бутылки"},
-        pl:{c:"Koktajle",l:"Long Drinki",li:"Likiery",s:"Shoty",f:"Butelki"}
-    };
-
-    const drinks = {
-        de:{
-            name:"Mojito",
-            info:"Rum 50ml<br>Limette<br>Minze<br>Soda<br><br>300ml"
-        },
-        en:{
-            name:"Mojito",
-            info:"Rum 50ml<br>Lime<br>Mint<br>Soda<br><br>300ml"
-        },
-        ru:{
-            name:"Мохито",
-            info:"Ром 50мл<br>Лайм<br>Мята<br>Сода<br><br>300мл"
-        },
-        pl:{
-            name:"Mojito",
-            info:"Rum 50ml<br>Limonka<br>Mięta<br>Soda<br><br>300ml"
-        }
-    };
-
-    document.getElementById("t1").innerText = tabs[lang].c;
-    document.getElementById("t2").innerText = tabs[lang].l;
-    document.getElementById("t3").innerText = tabs[lang].li;
-    document.getElementById("t4").innerText = tabs[lang].s;
-    document.getElementById("t5").innerText = tabs[lang].f;
-
-    document.getElementById("d1-name").innerText = drinks[lang].name;
-    document.getElementById("d1-info").innerHTML = drinks[lang].info;
-
     document.getElementById("settings").classList.remove("active");
 }
-    
 </script>
-<div class="footer">
-    <div>VIBES CLUB</div>
-    <div class="address">Schachtweg 34, 38440 Wolfsburg</div>
-</div>
-<style>
-    .footer{
-    text-align:center;
-    padding:25px;
-    color:#aaa;
-    border-top:1px solid #333;
-    margin-top:20px;
-}
 
-.address{
-    margin-top:8px;
-    color:#fff;
-    font-size:14px;
-}
 </body>
-    
 </html>
-```
