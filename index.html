@@ -1,242 +1,224 @@
-.header h1 {
-  margin: 0;
-  font-size: 28px;
-  letter-spacing: 2px;
+```html
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VIBES CLUB</title>
+
+<style>
+body {
+    margin: 0;
+    background: #111;
+    color: white;
+    font-family: Arial, sans-serif;
 }
 
-/* TRANSLATE */
+.header {
+    text-align: center;
+    padding: 20px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+
 #google_translate_element {
-  text-align: center;
-  margin: 10px;
-/* SETTINGS */
+    text-align: center;
+    margin: 10px;
+}
+
 .settings-btn {
-  position: fixed;
-  top: 12px;
-  right: 12px;
-  background: #2a2a2a;
-  padding: 10px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 18px;
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    background: #2a2a2a;
+    padding: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 18px;
 }
 
 .settings {
-  position: fixed;
-  top: 55px;
-  right: 12px;
-  background: #1e1e1e;
-  padding: 10px;
-  border-radius: 12px;
-  display: none;
-  width: 150px;
+    position: fixed;
+    top: 55px;
+    right: 12px;
+    background: #1e1e1e;
+    padding: 10px;
+    border-radius: 12px;
+    display: none;
+    width: 160px;
 }
 
 .settings.active {
-  display: block;
+    display: block;
 }
 
 .lang {
-  padding: 8px;
-  cursor: pointer;
-  border-radius: 8px;
-  display: flex;
-  gap: 8px;
-  align-items: center;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 8px;
 }
 
 .lang:hover {
-  background: #333;
+    background: #333;
 }
 
-/* TABS */
-@@ -37,7 +72,7 @@
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin: 10px;
-  margin: 15px;
+.tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px;
 }
 
 .tab {
-@@ -57,7 +92,7 @@
-/* MENU */
-.menu {
-  display: none;
-  max-width: 700px;
-  max-width: 750px;
-  margin: auto;
-  padding: 10px;
-}
-@@ -92,7 +127,7 @@
+    background: #222;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
-.footer .age {
-  color: #ff3b3b;
-  color: red;
-  font-weight: bold;
-  margin-bottom: 5px;
+.tab.active {
+    background: #ff0055;
 }
-@@ -108,33 +143,25 @@
+
+.menu {
+    display: none;
+    max-width: 750px;
+    margin: auto;
+    padding: 15px;
+}
+
+.menu.active {
+    display: block;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    margin-bottom: 8px;
+    background: #1e1e1e;
+    border-radius: 10px;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+}
+
+.age {
+    color: red;
+    font-weight: bold;
+}
+</style>
+</head>
 
 <body>
 
-<!-- SETTINGS -->
 <div class="settings-btn" onclick="toggleSettings()">⚙️</div>
 
 <div class="settings" id="settings">
-  <div class="lang" onclick="setLang('de')">🇩🇪 Deutsch</div>
-  <div class="lang" onclick="setLang('en')">🇬🇧 English</div>
-  <div class="lang" onclick="setLang('ru')">🇷🇺 Русский</div>
-  <div class="lang" onclick="setLang('pl')">🇵🇱 Polski</div>
+    <div class="lang" onclick="setLang('de')">🇩🇪 Deutsch</div>
+    <div class="lang" onclick="setLang('en')">🇬🇧 English</div>
+    <div class="lang" onclick="setLang('ru')">🇷🇺 Русский</div>
+    <div class="lang" onclick="setLang('pl')">🇵🇱 Polski</div>
 </div>
 
-<!-- HEADER -->
 <div class="header">
-  <h1>VIBES CLUB</h1>
-  <h1 id="title">VIBES CLUB</h1>
+    <h1 id="title">VIBES CLUB</h1>
 </div>
 
-<!-- 🌍 TRANSLATOR -->
 <div id="google_translate_element"></div>
 
-<script type="text/javascript">
+<div class="tabs">
+    <div class="tab active" onclick="openTab(event,'cocktails')">Cocktails</div>
+    <div class="tab" onclick="openTab(event,'longdrinks')">Longdrinks</div>
+    <div class="tab" onclick="openTab(event,'likor')">Liköre</div>
+    <div class="tab" onclick="openTab(event,'shots')">Shots</div>
+    <div class="tab" onclick="openTab(event,'flaschen')">Flaschen</div>
+</div>
+
+<div id="cocktails" class="menu active">
+    <div class="item">
+        <span>Напиток</span>
+        <span>Цена</span>
+    </div>
+</div>
+
+<div id="longdrinks" class="menu">
+    <div class="item">
+        <span>Напиток</span>
+        <span>Цена</span>
+    </div>
+</div>
+
+<div id="likor" class="menu">
+    <div class="item">
+        <span>Напиток</span>
+        <span>Цена</span>
+    </div>
+</div>
+
+<div id="shots" class="menu">
+    <div class="item">
+        <span>Напиток</span>
+        <span>Цена</span>
+    </div>
+</div>
+
+<div id="flaschen" class="menu">
+    <div class="item">
+        <span>Напиток</span>
+        <span>Цена</span>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="age">18+</div>
+    <div>VIBES CLUB</div>
+</div>
+
+<script>
+function openTab(event, tab) {
+    document.querySelectorAll('.menu').forEach(menu => {
+        menu.classList.remove('active');
+    });
+
+    document.querySelectorAll('.tab').forEach(tabBtn => {
+        tabBtn.classList.remove('active');
+    });
+
+    document.getElementById(tab).classList.add('active');
+    event.target.classList.add('active');
+}
+
+function toggleSettings() {
+    document.getElementById('settings').classList.toggle('active');
+}
+
+function setLang(lang) {
+    document.getElementById('settings').classList.remove('active');
+}
+</script>
+
+<script>
 function googleTranslateElementInit() {
-  new google.translate.TranslateElement(
-    {
-      pageLanguage: 'de',
-      includedLanguages: 'de,en,ru,pl',
-      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-    },
-    'google_translate_element'
-  );
+    new google.translate.TranslateElement({
+        pageLanguage: 'de',
+        includedLanguages: 'de,en,ru,pl',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
 }
 </script>
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-<!-- TABS -->
-<div class="tabs">
-  <div class="tab active" onclick="openTab('cocktails')">Cocktails</div>
-  <div class="tab" onclick="openTab('long')">Longdrinks</div>
-  <div class="tab" onclick="openTab('longdrinks')">Longdrinks</div>
-  <div class="tab" onclick="openTab('likor')">Liköre</div>
-  <div class="tab" onclick="openTab('shots')">Shots</div>
-  <div class="tab" onclick="openTab('flaschen')">Flaschen</div>
-@@ -143,42 +170,86 @@ <h1>VIBES CLUB</h1>
-
-<!-- COCKTAILS -->
-<div id="cocktails" class="menu active">
-
-  <div class="item"><span>Mojito</span><span class="price">8,50€</span></div>
-  <div class="item"><span>Mojito Razz</span><span class="price">8,50€</span></div>
-  <div class="item"><span>Long Island Ice Tea</span><span class="price">10,00€</span></div>
-  <div class="item"><span>Sex on the Beach</span><span class="price">8,50€</span></div>
-  <div class="item"><span>Pina Colada</span><span class="price">8,50€</span></div>
-  <div class="item"><span>Cosmopolitan</span><span class="price">9,50€</span></div>
-  <div class="item"><span>Zombie</span><span class="price">10,50€</span></div>
-  <div class="item"><span>Mai Tai</span><span class="price">10,00€</span></div>
-
-</div>
-
-<!-- LONGDRINKS -->
-<div id="long" class="menu">
-<div id="longdrinks" class="menu">
-
-  <div class="item"><span>Jack Daniels Cola</span><span class="price">8,00€</span></div>
-  <div class="item"><span>Bacardi Razz Sprite</span><span class="price">7,00€</span></div>
-  <div class="item"><span>Vodka Red Bull</span><span class="price">7,50€</span></div>
-  <div class="item"><span>Vodka Wild Berry</span><span class="price">7,50€</span></div>
-  <div class="item"><span>Gin Tonic</span><span class="price">7,50€</span></div>
-  <div class="item"><span>Jack Daniels Cola</span><span class="price">8,00€</span></div>
-  <div class="item"><span>Bombay Gin Tonic</span><span class="price">8,00€</span></div>
-  <div class="item"><span>Captain Morgan Cola</span><span class="price">7,00€</span></div>
-  <div class="item"><span>Havana Club Cola</span><span class="price">7,00€</span></div>
-  <div class="item"><span>Jim Beam Cola</span><span class="price">7,00€</span></div>
-  <div class="item"><span>Johnnie Walker Black Cola</span><span class="price">8,00€</span></div>
-  <div class="item"><span>Johnnie Walker Red Cola</span><span class="price">7,00€</span></div>
-  <div class="item"><span>Cuba Libre</span><span class="price">8,00€</span></div>
-
-</div>
-
-<!-- LIKÖRE -->
-<div id="likor" class="menu">
-
-  <div class="item"><span>Berliner Luft</span><span class="price">2,50€</span></div>
-  <div class="item"><span>Ficken</span><span class="price">2,50€</span></div>
-  <div class="item"><span>Jägermeister</span><span class="price">2,50€</span></div>
-  <div class="item"><span>Likör 43</span><span class="price">2,50€</span></div>
-  <div class="item"><span>Ramazotti</span><span class="price">2,50€</span></div>
-  <div class="item"><span>Tequila</span><span class="price">2,50€</span></div>
-  <div class="item"><span>Tequila Gold</span><span class="price">2,50€</span></div>
-  <div class="item"><span>Averna</span><span class="price">2,50€</span></div>
-  <div class="item"><span>Campari</span><span class="price">2,50€</span></div>
-  <div class="item"><span>Sambuca</span><span class="price">2,50€</span></div>
-  <div class="item"><span>Baileys</span><span class="price">2,50€</span></div>
-
-</div>
-
-<!-- SHOTS -->
-<div id="shots" class="menu">
-
-  <div class="item"><span>Jack Daniels</span><span class="price">3,00€</span></div>
-  <div class="item"><span>Captain Morgan</span><span class="price">3,00€</span></div>
-  <div class="item"><span>Hennessy</span><span class="price">4,00€</span></div>
-  <div class="item"><span>Johnnie Walker Black</span><span class="price">3,50€</span></div>
-  <div class="item"><span>Johnnie Walker Red</span><span class="price">3,00€</span></div>
-  <div class="item"><span>Jameson</span><span class="price">3,50€</span></div>
-  <div class="item"><span>Ballantines</span><span class="price">3,00€</span></div>
-  <div class="item"><span>B52</span><span class="price">3,00€</span></div>
-  <div class="item"><span>Kamikaze</span><span class="price">2,50€</span></div>
-
-</div>
-
-<!-- FLASCHEN -->
-<div id="flaschen" class="menu">
-
-  <div class="item"><span>Belvedere</span><span class="price">120€</span></div>
-  <div class="item"><span>Jägermeister</span><span class="price">70€</span></div>
-  <div class="item"><span>Absolut</span><span class="price">80€</span></div>
-  <div class="item"><span>Bombay Sapphire</span><span class="price">90€</span></div>
-  <div class="item"><span>Havana Club</span><span class="price">80€</span></div>
-  <div class="item"><span>Hendricks</span><span class="price">100€</span></div>
-  <div class="item"><span>Jack Daniels</span><span class="price">90€</span></div>
-
-</div>
-
-<!-- TABLETS -->
-<div id="tablets" class="menu">
-
-  <div class="item"><span>Mix Shots</span><span class="price">15€</span></div>
-
-</div>
-
-<!-- FOOTER -->
-@@ -192,10 +263,27 @@ <h1>VIBES CLUB</h1>
-function openTab(tab) {
-  document.querySelectorAll('.menu').forEach(m => m.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-
-  document.getElementById(tab).classList.add('active');
-  event.target.classList.add('active');
-}
-
-/* SETTINGS */
-function toggleSettings() {
-  document.getElementById('settings').classList.toggle('active');
-}
-
-/* LANGUAGE SYSTEM (simple visual switch) */
-function setLang(lang) {
-  const titles = {
-    de: "VIBES CLUB",
-    en: "VIBES CLUB",
-    ru: "VIBES CLUB",
-    pl: "VIBES CLUB"
-  };
-
-  document.getElementById("title").innerText = titles[lang];
-  document.getElementById("settings").classList.remove("active");
-}
-</script>
-
 </body>
+</html>
+```
