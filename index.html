@@ -168,11 +168,11 @@ body{
 
 <!-- TABS -->
 <div class="tabs">
-    <div class="tab active" onclick="openTab(event,'cocktails')" id="t1">Cocktails</div>
-    <div class="tab" onclick="openTab(event,'longdrinks')" id="t2">Longdrinks</div>
-    <div class="tab" onclick="openTab(event,'likor')" id="t3">Liköre</div>
-    <div class="tab" onclick="openTab(event,'shots')" id="t4">Shots</div>
-    <div class="tab" onclick="openTab(event,'flaschen')" id="t5">Flaschen</div>
+    <div class="tab active" onclick="openTab(event,'cocktails')" id="t1" data-text="cocktails">Cocktails</div>
+    <div class="tab" onclick="openTab(event,'longdrinks')" id="t2" data-text="longdrinks">Longdrinks</div>
+    <div class="tab" onclick="openTab(event,'likor')" id="t3" data-text="likor">Liköre</div>
+    <div class="tab" onclick="openTab(event,'shots')" id="t4" data-text="shots">Shots</div>
+    <div class="tab" onclick="openTab(event,'flaschen')" id="t5" data-text="flaschen">Flaschen</div>
 </div>
 
 <!-- COCKTAILS -->
@@ -180,10 +180,10 @@ body{
 
     <div class="drink" onclick="toggleDrink(this)">
         <div class="drink-header">
-            <span>Mojito</span>
+            <span data-text="mojito">Mojito</span>
             <span class="price">8,50€</span>
         </div>
-        <div class="drink-info">
+        <div class="drink-info" data-text="mojito_info">
             Rum 50ml<br>
             Lime<br>
             Mint<br>
@@ -202,16 +202,65 @@ body{
 <!-- FOOTER -->
 <div class="footer">
     <div>VIBES CLUB</div>
-    <div class="address">Schachtweg 34, 38440 Wolfsburg</div>
+    <div class="address" data-text="address">Schachtweg 34, 38440 Wolfsburg</div>
 </div>
 
 <script>
+// СЛОВАРЬ ПЕРЕВОДОВ
+const translations = {
+    de: {
+        title: "VIBES CLUB",
+        cocktails: "Cocktails",
+        longdrinks: "Longdrinks",
+        likor: "Liköre",
+        shots: "Shots",
+        flaschen: "Flaschen",
+        mojito: "Mojito",
+        mojito_info: "Rum 50ml<br>Lime<br>Mint<br>Soda<br><br>300ml",
+        address: "Schachtweg 34, 38440 Wolfsburg"
+    },
+    en: {
+        title: "VIBES CLUB",
+        cocktails: "Cocktails",
+        longdrinks: "Longdrinks",
+        likor: "Liqueurs",
+        shots: "Shots",
+        flaschen: "Bottles",
+        mojito: "Mojito",
+        mojito_info: "Rum 50ml<br>Lime<br>Mint<br>Soda<br><br>300ml",
+        address: "Schachtweg 34, 38440 Wolfsburg"
+    },
+    ru: {
+        title: "VIBES CLUB",
+        cocktails: "Коктейли",
+        longdrinks: "Лонгдринки",
+        likor: "Ликёры",
+        shots: "Шоты",
+        flaschen: "Бутылки",
+        mojito: "Мохито",
+        mojito_info: "Ром 50мл<br>Лайм<br>Мята<br>Сода<br><br>300мл",
+        address: "Schachtweg 34, 38440 Wolfsburg"
+    },
+    pl: {
+        title: "VIBES CLUB",
+        cocktails: "Koktajle",
+        longdrinks: "Drinki długie",
+        likor: "Likier",
+        shots: "Shotki",
+        flaschen: "Butelki",
+        mojito: "Mojito",
+        mojito_info: "Rum 50ml<br>Lime<br>Mięta<br>Soda<br><br>300ml",
+        address: "Schachtweg 34, 38440 Wolfsburg"
+    }
+};
+
+let currentLang = localStorage.getItem("lang") || "de";
+
 function toggleSettings(){
     document.getElementById("settings").classList.toggle("active");
 }
 
 function openTab(event, tab){
-
     document.querySelectorAll(".menu").forEach(m=>m.classList.remove("active"));
     document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
 
@@ -224,8 +273,27 @@ function toggleDrink(el){
 }
 
 function setLang(lang){
+    currentLang = lang;
+    localStorage.setItem("lang", lang);
+    document.documentElement.lang = lang;
     document.getElementById("settings").classList.remove("active");
+    
+    // Обновляем все элементы с атрибутом data-text
+    document.querySelectorAll("[data-text]").forEach(el => {
+        const key = el.getAttribute("data-text");
+        if(translations[lang][key]) {
+            el.innerHTML = translations[lang][key];
+        }
+    });
+    
+    // Обновляем заголовок
+    document.getElementById("title").textContent = translations[lang].title;
 }
+
+// Инициализация при загрузке страницы
+document.addEventListener("DOMContentLoaded", function() {
+    setLang(currentLang);
+});
 </script>
 
 </body>
