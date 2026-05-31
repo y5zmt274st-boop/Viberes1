@@ -401,10 +401,8 @@ body{
 
 <body>
 
-<!-- ADMIN BUTTON -->
 <div class="admin-btn" onclick="openAuthModal()" id="adminBtn">👤</div>
 
-<!-- SETTINGS -->
 <div class="settings-btn" onclick="toggleSettings()">⚙️</div>
 
 <div class="settings" id="settings">
@@ -414,12 +412,10 @@ body{
     <div class="lang" onclick="setLang('pl')">🇵🇱 Polski</div>
 </div>
 
-<!-- HEADER -->
 <div class="header">
     <h1 id="title">VIBES CLUB</h1>
 </div>
 
-<!-- TABS -->
 <div class="tabs" id="tabsContainer">
     <div class="tab active" onclick="openTab(event,'cocktails')" id="t1" data-text="cocktails">Cocktails</div>
     <div class="tab" onclick="openTab(event,'longdrinks')" id="t2" data-text="longdrinks">Longdrinks</div>
@@ -428,25 +424,21 @@ body{
     <div class="tab" onclick="openTab(event,'flaschen')" id="t5" data-text="flaschen">Flaschen</div>
 </div>
 
-<!-- MENUS -->
 <div id="cocktails" class="menu active"></div>
 <div id="longdrinks" class="menu"></div>
 <div id="likor" class="menu"></div>
 <div id="shots" class="menu"></div>
 <div id="flaschen" class="menu"></div>
 
-<!-- ADD DRINK BUTTON -->
 <div class="add-drink-container">
     <button class="btn-add-drink" onclick="openAddDrinkModal()">+ Добавить напиток</button>
 </div>
 
-<!-- FOOTER -->
 <div class="footer">
     <div>VIBES CLUB</div>
     <div class="address" data-text="address">Schachtweg 34, 38440 Wolfsburg</div>
 </div>
 
-<!-- AUTH MODAL -->
 <div id="authModal" class="modal">
     <div class="modal-content">
         <h2 id="authTitle">Admin Login</h2>
@@ -475,7 +467,6 @@ body{
     </div>
 </div>
 
-<!-- ADD/EDIT DRINK MODAL -->
 <div id="drinkModal" class="modal">
     <div class="modal-content">
         <h2 id="drinkModalTitle">Add Drink</h2>
@@ -511,7 +502,6 @@ body{
     </div>
 </div>
 
-<!-- FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
@@ -627,6 +617,9 @@ async function handleAuth(event){
         const userCredential = await auth.signInWithEmailAndPassword(email, password);
         currentUser = userCredential.user;
         showUserPanel();
+        
+        // ЗДЕСЬ: Закрываем модальное окно после успешного входа
+        closeAuthModal(); 
     } catch (error) {
         document.getElementById("authError").textContent = "Error: " + error.message;
     }
@@ -772,6 +765,10 @@ auth.onAuthStateChanged((user) => {
         currentUser = user;
         showUserPanel();
         document.getElementById("adminBtn").classList.add("logged-in");
+        
+        // ЗДЕСЬ: Если сессия сохранилась при перезагрузке, убираем форму
+        document.getElementById("authFormElement").style.display = "none";
+        document.getElementById("userPanel").style.display = "block";
     }
 });
 
