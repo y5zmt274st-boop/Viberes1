@@ -13,7 +13,7 @@ body {
   color: white;
 }
 
-/* ШАПКА */
+/* HEADER */
 .header {
   text-align: center;
   padding: 25px 15px;
@@ -23,7 +23,6 @@ body {
 .header h1 {
   margin: 0;
   font-size: 28px;
-  letter-spacing: 2px;
 }
 
 .tag {
@@ -38,26 +37,21 @@ body {
   margin-top: 8px;
 }
 
-/* ВКЛАДКИ */
+/* TABS */
 .tabs {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
   margin: 15px;
 }
 
 .tab {
-  padding: 10px 18px;
+  padding: 10px 14px;
   background: #2a2a2a;
   border-radius: 20px;
   cursor: pointer;
-  transition: 0.3s;
-  font-size: 14px;
-}
-
-.tab:hover {
-  background: #444;
+  font-size: 13px;
 }
 
 .tab.active {
@@ -66,10 +60,10 @@ body {
   font-weight: bold;
 }
 
-/* МЕНЮ */
+/* MENU */
 .menu {
   display: none;
-  max-width: 600px;
+  max-width: 700px;
   margin: auto;
   padding: 10px;
 }
@@ -78,122 +72,146 @@ body {
   display: block;
 }
 
-/* КАРТОЧКИ */
+/* ITEM */
 .item {
   background: #2a2a2a;
   margin: 10px;
-  padding: 15px 18px;
+  padding: 14px 16px;
   border-radius: 18px;
-
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  font-size: 15px;
 }
 
-/* ЦЕНА */
 .price {
   color: #ff9800;
   font-weight: bold;
 }
 
-/* 📱 АДАПТАЦИЯ ПОД ТЕЛЕФОН */
+/* MOBILE */
 @media (max-width: 600px) {
-  .header h1 {
-    font-size: 22px;
-  }
-
-  .item {
-    font-size: 14px;
-    padding: 12px;
-  }
-
-  .tab {
-    font-size: 13px;
-    padding: 8px 14px;
-  }
+  .header h1 { font-size: 22px; }
+  .item { font-size: 14px; }
+  .tab { font-size: 12px; }
 }
 </style>
-
 </head>
+
 <body>
 
-<!-- ШАПКА -->
 <div class="header">
   <h1>VIBES CLUB</h1>
   <div class="tag">🔞 18+ ONLY</div>
   <div class="address">SCHACHTWEG 34, 38440 WOLFSBURG</div>
 </div>
 
-<!-- ВКЛАДКИ -->
+<!-- TABS -->
 <div class="tabs">
-  <div class="tab active" onclick="openTab('beer')">Пиво</div>
-  <div class="tab" onclick="openTab('shots')">Шоты</div>
-  <div class="tab" onclick="openTab('drinks')">Напитки</div>
+  <div class="tab active" onclick="openTab('cocktails')">Cocktails</div>
+  <div class="tab" onclick="openTab('long')">Longdrinks</div>
+  <div class="tab" onclick="openTab('likor')">Liköre</div>
+  <div class="tab" onclick="openTab('shots')">Shots</div>
+  <div class="tab" onclick="openTab('flaschen')">Flaschen</div>
+  <div class="tab" onclick="openTab('tablets')">Tablets</div>
 </div>
 
-<!-- ПИВО -->
-<div id="beer" class="menu active">
+<!-- COCKTAILS -->
+<div id="cocktails" class="menu active">
 
-  <div class="item">
-    <span>Heineken</span>
-    <span class="price">4€</span>
-  </div>
-
-  <div class="item">
-    <span>Corona</span>
-    <span class="price">4.5€</span>
-  </div>
-
-  <!-- ДОБАВЛЯЙ ПИВО ТУТ -->
+  <div class="item"><span>Mojito</span><span class="price">8,50€</span></div>
+  <div class="item"><span>Mojito Razz</span><span class="price">8,50€</span></div>
+  <div class="item"><span>Long Island Ice Tea</span><span class="price">10,00€</span></div>
+  <div class="item"><span>Sex on the Beach</span><span class="price">8,50€</span></div>
+  <div class="item"><span>Strawberry’s Kiss</span><span class="price">8,00€</span></div>
+  <div class="item"><span>Pina Colada</span><span class="price">8,50€</span></div>
+  <div class="item"><span>Pink Elephant</span><span class="price">7,50€</span></div>
+  <div class="item"><span>Swimming Pool</span><span class="price">8,50€</span></div>
+  <div class="item"><span>Cosmopolitan</span><span class="price">9,50€</span></div>
+  <div class="item"><span>Zombie</span><span class="price">10,50€</span></div>
+  <div class="item"><span>Mai Tai</span><span class="price">10,00€</span></div>
 </div>
 
-<!-- ШОТЫ -->
+<!-- LONGDRINKS -->
+<div id="long" class="menu">
+
+  <div class="item"><span>Jack Daniels Cola</span><span class="price">8,00€</span></div>
+  <div class="item"><span>Bacardi Razz Sprite</span><span class="price">7,00€</span></div>
+  <div class="item"><span>Vodka Red Bull</span><span class="price">7,50€</span></div>
+  <div class="item"><span>Vodka Wild Berry</span><span class="price">7,50€</span></div>
+  <div class="item"><span>Jägermeister Energy</span><span class="price">7,50€</span></div>
+  <div class="item"><span>Gin Tonic</span><span class="price">7,50€</span></div>
+  <div class="item"><span>Bombay Gin Tonic</span><span class="price">8,00€</span></div>
+  <div class="item"><span>Captain Morgan Cola</span><span class="price">7,00€</span></div>
+  <div class="item"><span>Havana Club Cola</span><span class="price">7,00€</span></div>
+  <div class="item"><span>Jim Beam Cola</span><span class="price">7,00€</span></div>
+  <div class="item"><span>Johnnie Walker Black Cola</span><span class="price">8,00€</span></div>
+  <div class="item"><span>Johnnie Walker Red Cola</span><span class="price">7,00€</span></div>
+  <div class="item"><span>Cuba Libre</span><span class="price">8,00€</span></div>
+
+</div>
+
+<!-- LIKÖRE -->
+<div id="likor" class="menu">
+
+  <div class="item"><span>Berliner Luft</span><span class="price">2,50€</span></div>
+  <div class="item"><span>Ficken</span><span class="price">2,50€</span></div>
+  <div class="item"><span>Jägermeister</span><span class="price">2,50€</span></div>
+  <div class="item"><span>Likör 43</span><span class="price">2,50€</span></div>
+  <div class="item"><span>Ramazotti</span><span class="price">2,50€</span></div>
+  <div class="item"><span>Tequila</span><span class="price">2,50€</span></div>
+  <div class="item"><span>Tequila Gold</span><span class="price">2,50€</span></div>
+  <div class="item"><span>Averna</span><span class="price">2,50€</span></div>
+  <div class="item"><span>Campari</span><span class="price">2,50€</span></div>
+  <div class="item"><span>Sambuca</span><span class="price">2,50€</span></div>
+  <div class="item"><span>Baileys</span><span class="price">2,50€</span></div>
+
+</div>
+
+<!-- SHOTS -->
 <div id="shots" class="menu">
 
-  <div class="item">
-    <span>Tequila Shot</span>
-    <span class="price">3€</span>
-  </div>
+  <div class="item"><span>Jack Daniels</span><span class="price">3,00€</span></div>
+  <div class="item"><span>Captain Morgan</span><span class="price">3,00€</span></div>
+  <div class="item"><span>Hennessy</span><span class="price">4,00€</span></div>
+  <div class="item"><span>Johnnie Walker</span><span class="price">3,00€</span></div>
+  <div class="item"><span>Johnnie Walker Black</span><span class="price">3,50€</span></div>
+  <div class="item"><span>Johnnie Walker Red</span><span class="price">3,00€</span></div>
+  <div class="item"><span>Jameson</span><span class="price">3,50€</span></div>
+  <div class="item"><span>Ballantines</span><span class="price">3,00€</span></div>
+  <div class="item"><span>B52</span><span class="price">3,00€</span></div>
+  <div class="item"><span>Kamikaze</span><span class="price">2,50€</span></div>
 
-  <div class="item">
-    <span>Vodka Shot</span>
-    <span class="price">2.5€</span>
-  </div>
-
-  <!-- ДОБАВЛЯЙ ШОТЫ ТУТ -->
 </div>
 
-<!-- НАПИТКИ -->
-<div id="drinks" class="menu">
+<!-- FLASCHEN -->
+<div id="flaschen" class="menu">
 
-  <div class="item">
-    <span>Coca-Cola</span>
-    <span class="price">2€</span>
-  </div>
+  <div class="item"><span>Belvedere</span><span class="price">120€</span></div>
+  <div class="item"><span>Jägermeister</span><span class="price">70€</span></div>
+  <div class="item"><span>Absolut</span><span class="price">80€</span></div>
+  <div class="item"><span>Three Sixty</span><span class="price">80€</span></div>
+  <div class="item"><span>Bombay Sapphire</span><span class="price">90€</span></div>
+  <div class="item"><span>Havana Club</span><span class="price">80€</span></div>
+  <div class="item"><span>Hendricks</span><span class="price">100€</span></div>
+  <div class="item"><span>Jack Daniels</span><span class="price">90€</span></div>
+  <div class="item"><span>Jack Daniels Honey</span><span class="price">100€</span></div>
 
-  <div class="item">
-    <span>Fanta</span>
-    <span class="price">2€</span>
-  </div>
+</div>
 
-  <div class="item">
-    <span>Water</span>
-    <span class="price">1.5€</span>
-  </div>
+<!-- TABLETS -->
+<div id="tablets" class="menu">
 
-  <!-- ДОБАВЛЯЙ НАПИТКИ ТУТ -->
+  <div class="item"><span>Berliner Luft</span><span class="price">15€</span></div>
+  <div class="item"><span>Ficken</span><span class="price">15€</span></div>
+  <div class="item"><span>Kamikaze</span><span class="price">15€</span></div>
+
 </div>
 
 <script>
-function openTab(tabName) {
-  let menus = document.querySelectorAll('.menu');
-  let tabs = document.querySelectorAll('.tab');
+function openTab(tab) {
+  document.querySelectorAll('.menu').forEach(m => m.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
 
-  menus.forEach(m => m.classList.remove('active'));
-  tabs.forEach(t => t.classList.remove('active'));
-
-  document.getElementById(tabName).classList.add('active');
+  document.getElementById(tab).classList.add('active');
   event.target.classList.add('active');
 }
 </script>
