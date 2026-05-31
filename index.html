@@ -248,10 +248,10 @@ body{
     border:1px solid #333;
     max-height:90vh;
     overflow-y:auto;
-    position: relative; /* Чтобы крестик позиционировался внутри */
+    position: relative;
 }
 
-/* КНОПКА-КРЕСТИК ДЛЯ ЗАКРЫТИЯ */
+/* CLOSE BUTTON */
 .close-modal-btn {
     position: absolute;
     top: 15px;
@@ -272,7 +272,7 @@ body{
 
 .modal-content h2{
     margin-top:0;
-    padding-right:30px; /* Чтобы заголовок не налезал на крестик */
+    padding-right:30px;
 }
 
 .form-group{
@@ -350,7 +350,6 @@ body{
     cursor:pointer;
     margin:15px auto;
     display:none;
-    block-size:block;
 }
 
 .btn-add-drink.admin-mode{
@@ -421,10 +420,8 @@ body{
 
 <body>
 
-<!-- ADMIN BUTTON -->
 <div class="admin-btn" onclick="openAuthModal()" id="adminBtn">👤</div>
 
-<!-- SETTINGS -->
 <div class="settings-btn" onclick="toggleSettings()">⚙️</div>
 
 <div class="settings" id="settings">
@@ -434,12 +431,10 @@ body{
     <div class="lang" onclick="setLang('pl')">🇵🇱 Polski</div>
 </div>
 
-<!-- HEADER -->
 <div class="header">
     <h1 id="title">VIBES CLUB</h1>
 </div>
 
-<!-- TABS -->
 <div class="tabs" id="tabsContainer">
     <div class="tab active" onclick="openTab(event,'cocktails')" id="t1" data-text="cocktails">Cocktails</div>
     <div class="tab" onclick="openTab(event,'longdrinks')" id="t2" data-text="longdrinks">Longdrinks</div>
@@ -448,28 +443,23 @@ body{
     <div class="tab" onclick="openTab(event,'flaschen')" id="t5" data-text="flaschen">Flaschen</div>
 </div>
 
-<!-- MENUS -->
 <div id="cocktails" class="menu active"></div>
 <div id="longdrinks" class="menu"></div>
 <div id="likor" class="menu"></div>
 <div id="shots" class="menu"></div>
 <div id="flaschen" class="menu"></div>
 
-<!-- ADD DRINK BUTTON -->
 <div class="add-drink-container">
     <button class="btn-add-drink" onclick="openAddDrinkModal()">+ Добавить напиток</button>
 </div>
 
-<!-- FOOTER -->
 <div class="footer">
     <div>VIBES CLUB</div>
     <div class="address" data-text="address">Schachtweg 34, 38440 Wolfsburg</div>
 </div>
 
-<!-- AUTH MODAL -->
 <div id="authModal" class="modal">
     <div class="modal-content">
-        <!-- КРЕСТИК ТУТ -->
         <button class="close-modal-btn" onclick="closeAuthModal()">✕</button>
         
         <h2 id="authTitle">Admin Login</h2>
@@ -498,10 +488,8 @@ body{
     </div>
 </div>
 
-<!-- ADD/EDIT DRINK MODAL -->
 <div id="drinkModal" class="modal">
     <div class="modal-content">
-        <!-- И ТУТ КРЕСТИК -->
         <button class="close-modal-btn" onclick="closeDrinkModal()">✕</button>
         
         <h2 id="drinkModalTitle">Add Drink</h2>
@@ -537,7 +525,6 @@ body{
     </div>
 </div>
 
-<!-- FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
@@ -625,6 +612,7 @@ async function handleAuth(event){
     }
 }
 
+// Измененное имя функции для предотвращения конфликтов со стилями CSS
 function showUserPanel(){
     document.getElementById("authFormElement").style.display = "none";
     document.getElementById("userPanel").style.display = "block";
@@ -690,16 +678,14 @@ async function saveDrink(event){
     try {
         if(editingDrinkId) {
             await db.collection("drinks").doc(editingDrinkId).update({ name, price, info, category });
-        }
-        else 
+        } else {
             await db.collection("drinks").add({
-        name,
-        price,
-        info,
-        category,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    });
-}
+                name,
+                price,
+                info,
+                category,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
         }
         loadDrinks();
         closeDrinkModal();
@@ -745,20 +731,22 @@ async function loadDrinks(){
             const drinkId = doc.id;
             const menu = document.getElementById(drink.category);
             
-            const drinkEl = document.createElement("div");
-            drinkEl.className = "drink" + (adminMode ? " admin-mode" : "");
-            drinkEl.innerHTML = `
-                <div class="drink-header" onclick="if(!event.target.closest('.drink-actions')) toggleDrink(this.parentElement)">
-                    <span>${drink.name}</span>
-                    <span class="price">${drink.price}</span>
-                    <div class="drink-actions">
-                        <button type="button" onclick="editDrink('${drinkId}', ${JSON.stringify(drink).replace(/'/g, "&apos;")})">✏️</button>
-                        <button type="button" class="delete-btn" onclick="deleteDrink('${drinkId}')">🗑️</button>
+            if (menu) {
+                const drinkEl = document.createElement("div");
+                drinkEl.className = "drink" + (adminMode ? " admin-mode" : "");
+                drinkEl.innerHTML = `
+                    <div class="drink-header" onclick="if(!event.target.closest('.drink-actions')) toggleDrink(this.parentElement)">
+                        <span>${drink.name}</span>
+                        <span class="price">${drink.price}</span>
+                        <div class="drink-actions">
+                            <button type="button" onclick="editDrink('${drinkId}', ${JSON.stringify(drink).replace(/'/g, "&apos;")})">✏️</button>
+                            <button type="button" class="delete-btn" onclick="deleteDrink('${drinkId}')">🗑️</button>
+                        </div>
                     </div>
-                </div>
-                <div class="drink-info">${drink.info}</div>
-            `;
-            menu.appendChild(drinkEl);
+                    <div class="drink-info">${drink.info}</div>
+                `;
+                menu.appendChild(drinkEl);
+            }
         });
     } catch (error) {
         console.error("Error loading drinks:", error);
