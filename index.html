@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +16,7 @@ body {
 /* HEADER */
 .header {
   text-align: center;
-  padding: 25px 15px;
+  padding: 20px;
   background: #1e1e1e;
 }
 
@@ -25,16 +25,10 @@ body {
   font-size: 28px;
 }
 
-.tag {
-  color: #ff3b3b;
-  font-weight: bold;
-  margin-top: 5px;
-}
-
-.address {
-  font-size: 13px;
-  opacity: 0.8;
-  margin-top: 8px;
+/* TRANSLATE */
+#google_translate_element {
+  text-align: center;
+  margin: 10px;
 }
 
 /* TABS */
@@ -43,7 +37,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  margin: 15px;
+  margin: 10px;
 }
 
 .tab {
@@ -87,22 +81,55 @@ body {
   font-weight: bold;
 }
 
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: 30px;
+  background: #1e1e1e;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.footer .age {
+  color: #ff3b3b;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
 /* MOBILE */
 @media (max-width: 600px) {
   .header h1 { font-size: 22px; }
-  .item { font-size: 14px; }
   .tab { font-size: 12px; }
+  .item { font-size: 14px; }
 }
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <div class="header">
   <h1>VIBES CLUB</h1>
-  <div class="tag">🔞 18+ ONLY</div>
-  <div class="address">SCHACHTWEG 34, 38440 WOLFSBURG</div>
 </div>
+
+<!-- 🌍 TRANSLATOR -->
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement(
+    {
+      pageLanguage: 'de',
+      includedLanguages: 'de,en,ru,pl',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    },
+    'google_translate_element'
+  );
+}
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <!-- TABS -->
 <div class="tabs">
@@ -116,94 +143,49 @@ body {
 
 <!-- COCKTAILS -->
 <div id="cocktails" class="menu active">
-
   <div class="item"><span>Mojito</span><span class="price">8,50€</span></div>
   <div class="item"><span>Mojito Razz</span><span class="price">8,50€</span></div>
   <div class="item"><span>Long Island Ice Tea</span><span class="price">10,00€</span></div>
   <div class="item"><span>Sex on the Beach</span><span class="price">8,50€</span></div>
-  <div class="item"><span>Strawberry’s Kiss</span><span class="price">8,00€</span></div>
   <div class="item"><span>Pina Colada</span><span class="price">8,50€</span></div>
-  <div class="item"><span>Pink Elephant</span><span class="price">7,50€</span></div>
-  <div class="item"><span>Swimming Pool</span><span class="price">8,50€</span></div>
   <div class="item"><span>Cosmopolitan</span><span class="price">9,50€</span></div>
-  <div class="item"><span>Zombie</span><span class="price">10,50€</span></div>
-  <div class="item"><span>Mai Tai</span><span class="price">10,00€</span></div>
 </div>
 
 <!-- LONGDRINKS -->
 <div id="long" class="menu">
-
-  <div class="item"><span>Jack Daniels Cola</span><span class="price">8,00€</span></div>
-  <div class="item"><span>Bacardi Razz Sprite</span><span class="price">7,00€</span></div>
   <div class="item"><span>Vodka Red Bull</span><span class="price">7,50€</span></div>
-  <div class="item"><span>Vodka Wild Berry</span><span class="price">7,50€</span></div>
-  <div class="item"><span>Jägermeister Energy</span><span class="price">7,50€</span></div>
   <div class="item"><span>Gin Tonic</span><span class="price">7,50€</span></div>
-  <div class="item"><span>Bombay Gin Tonic</span><span class="price">8,00€</span></div>
-  <div class="item"><span>Captain Morgan Cola</span><span class="price">7,00€</span></div>
-  <div class="item"><span>Havana Club Cola</span><span class="price">7,00€</span></div>
-  <div class="item"><span>Jim Beam Cola</span><span class="price">7,00€</span></div>
-  <div class="item"><span>Johnnie Walker Black Cola</span><span class="price">8,00€</span></div>
-  <div class="item"><span>Johnnie Walker Red Cola</span><span class="price">7,00€</span></div>
-  <div class="item"><span>Cuba Libre</span><span class="price">8,00€</span></div>
-
+  <div class="item"><span>Jack Daniels Cola</span><span class="price">8,00€</span></div>
 </div>
 
 <!-- LIKÖRE -->
 <div id="likor" class="menu">
-
-  <div class="item"><span>Berliner Luft</span><span class="price">2,50€</span></div>
-  <div class="item"><span>Ficken</span><span class="price">2,50€</span></div>
   <div class="item"><span>Jägermeister</span><span class="price">2,50€</span></div>
-  <div class="item"><span>Likör 43</span><span class="price">2,50€</span></div>
-  <div class="item"><span>Ramazotti</span><span class="price">2,50€</span></div>
-  <div class="item"><span>Tequila</span><span class="price">2,50€</span></div>
-  <div class="item"><span>Tequila Gold</span><span class="price">2,50€</span></div>
-  <div class="item"><span>Averna</span><span class="price">2,50€</span></div>
-  <div class="item"><span>Campari</span><span class="price">2,50€</span></div>
-  <div class="item"><span>Sambuca</span><span class="price">2,50€</span></div>
   <div class="item"><span>Baileys</span><span class="price">2,50€</span></div>
-
 </div>
 
 <!-- SHOTS -->
 <div id="shots" class="menu">
-
-  <div class="item"><span>Jack Daniels</span><span class="price">3,00€</span></div>
-  <div class="item"><span>Captain Morgan</span><span class="price">3,00€</span></div>
-  <div class="item"><span>Hennessy</span><span class="price">4,00€</span></div>
-  <div class="item"><span>Johnnie Walker</span><span class="price">3,00€</span></div>
-  <div class="item"><span>Johnnie Walker Black</span><span class="price">3,50€</span></div>
-  <div class="item"><span>Johnnie Walker Red</span><span class="price">3,00€</span></div>
-  <div class="item"><span>Jameson</span><span class="price">3,50€</span></div>
-  <div class="item"><span>Ballantines</span><span class="price">3,00€</span></div>
   <div class="item"><span>B52</span><span class="price">3,00€</span></div>
   <div class="item"><span>Kamikaze</span><span class="price">2,50€</span></div>
-
 </div>
 
 <!-- FLASCHEN -->
 <div id="flaschen" class="menu">
-
   <div class="item"><span>Belvedere</span><span class="price">120€</span></div>
-  <div class="item"><span>Jägermeister</span><span class="price">70€</span></div>
-  <div class="item"><span>Absolut</span><span class="price">80€</span></div>
-  <div class="item"><span>Three Sixty</span><span class="price">80€</span></div>
-  <div class="item"><span>Bombay Sapphire</span><span class="price">90€</span></div>
   <div class="item"><span>Havana Club</span><span class="price">80€</span></div>
-  <div class="item"><span>Hendricks</span><span class="price">100€</span></div>
-  <div class="item"><span>Jack Daniels</span><span class="price">90€</span></div>
-  <div class="item"><span>Jack Daniels Honey</span><span class="price">100€</span></div>
-
 </div>
 
 <!-- TABLETS -->
 <div id="tablets" class="menu">
+  <div class="item"><span>Mix Shots</span><span class="price">15€</span></div>
+</div>
 
-  <div class="item"><span>Berliner Luft</span><span class="price">15€</span></div>
-  <div class="item"><span>Ficken</span><span class="price">15€</span></div>
-  <div class="item"><span>Kamikaze</span><span class="price">15€</span></div>
-
+<!-- FOOTER -->
+<div class="footer">
+  <div class="age">🔞 18+ ONLY</div>
+  <div>VIBES CLUB</div>
+  <div>SCHACHTWEG 34, 38440 WOLFSBURG</div>
 </div>
 
 <script>
