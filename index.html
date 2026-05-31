@@ -25,7 +25,6 @@ body{
 .header h1{
     margin:0;
     font-size:28px;
-    letter-spacing:2px;
 }
 
 /* SETTINGS */
@@ -70,8 +69,8 @@ body{
 /* TABS */
 .tabs{
     display:flex;
-    justify-content:center;
     flex-wrap:wrap;
+    justify-content:center;
     gap:10px;
     padding:15px;
 }
@@ -167,14 +166,15 @@ body{
 
     <div class="drink" onclick="toggleDrink(this)">
         <div class="drink-header">
-            <span>Mojito</span>
+            <span id="d1-name">Mojito</span>
             <span class="price">8,50€</span>
         </div>
-        <div class="drink-info">
-            Ром 50ml<br>
-            Лайм<br>
-            Мята<br>
-            Сода<br><br>
+
+        <div class="drink-info" id="d1-info">
+            Rum 50ml<br>
+            Lime<br>
+            Mint<br>
+            Soda<br><br>
             300ml
         </div>
     </div>
@@ -204,21 +204,43 @@ function toggleDrink(el){
     el.classList.toggle("active");
 }
 
-/* 🌍 LANGUAGE SYSTEM */
+/* 🌍 FULL TRANSLATION */
 function setLang(lang){
 
-    const t = {
-        de:{c:"Cocktails", l:"Longdrinks", li:"Liköre", s:"Shots", f:"Flaschen"},
-        en:{c:"Cocktails", l:"Long Drinks", li:"Liqueurs", s:"Shots", f:"Bottles"},
-        ru:{c:"Коктейли", l:"Лонгдринки", li:"Ликёры", s:"Шоты", f:"Бутылки"},
-        pl:{c:"Koktajle", l:"Long Drinki", li:"Likiery", s:"Shoty", f:"Butelki"}
+    const tabs = {
+        de:{c:"Cocktails",l:"Longdrinks",li:"Liköre",s:"Shots",f:"Flaschen"},
+        en:{c:"Cocktails",l:"Long Drinks",li:"Liqueurs",s:"Shots",f:"Bottles"},
+        ru:{c:"Коктейли",l:"Лонгдринки",li:"Ликёры",s:"Шоты",f:"Бутылки"},
+        pl:{c:"Koktajle",l:"Long Drinki",li:"Likiery",s:"Shoty",f:"Butelki"}
     };
 
-    document.getElementById("t1").innerText = t[lang].c;
-    document.getElementById("t2").innerText = t[lang].l;
-    document.getElementById("t3").innerText = t[lang].li;
-    document.getElementById("t4").innerText = t[lang].s;
-    document.getElementById("t5").innerText = t[lang].f;
+    const drinks = {
+        de:{
+            name:"Mojito",
+            info:"Rum 50ml<br>Limette<br>Minze<br>Soda<br><br>300ml"
+        },
+        en:{
+            name:"Mojito",
+            info:"Rum 50ml<br>Lime<br>Mint<br>Soda<br><br>300ml"
+        },
+        ru:{
+            name:"Мохито",
+            info:"Ром 50мл<br>Лайм<br>Мята<br>Сода<br><br>300мл"
+        },
+        pl:{
+            name:"Mojito",
+            info:"Rum 50ml<br>Limonka<br>Mięta<br>Soda<br><br>300ml"
+        }
+    };
+
+    document.getElementById("t1").innerText = tabs[lang].c;
+    document.getElementById("t2").innerText = tabs[lang].l;
+    document.getElementById("t3").innerText = tabs[lang].li;
+    document.getElementById("t4").innerText = tabs[lang].s;
+    document.getElementById("t5").innerText = tabs[lang].f;
+
+    document.getElementById("d1-name").innerText = drinks[lang].name;
+    document.getElementById("d1-info").innerHTML = drinks[lang].info;
 
     document.getElementById("settings").classList.remove("active");
 }
