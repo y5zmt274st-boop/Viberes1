@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -7,58 +7,58 @@
 <title>VIBES CLUB</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
 body{
+    margin:0;
     font-family:Arial,sans-serif;
     background:#111;
-    color:white;
+    color:#fff;
 }
 
 /* HEADER */
 .header{
     text-align:center;
-    padding:25px;
+    padding:20px;
     background:#1a1a1a;
     border-bottom:1px solid #333;
 }
 
 .header h1{
-    font-size:30px;
-    letter-spacing:3px;
+    margin:0;
+    font-size:28px;
+    letter-spacing:2px;
 }
 
-/* SETTINGS */
+/* SETTINGS BUTTON */
 .settings-btn{
-    position: absolute;
+    position:absolute; /* ДВИГАЕТСЯ С САЙТОМ */
     top:15px;
     right:15px;
+
     width:50px;
     height:50px;
+
     background:#222;
     border-radius:12px;
+
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
+
     cursor:pointer;
-    font-size:24px;
-    z-index:99999;
+    font-size:22px;
 }
 
+/* SETTINGS MENU */
 .settings{
-    position:fixed;
-    top:75px;
+    position:absolute;
+    top:70px;
     right:15px;
+
     width:180px;
     background:#1e1e1e;
     border-radius:12px;
-    overflow:hidden;
+
     display:none;
-    z-index:99999;
 }
 
 .settings.active{
@@ -106,13 +106,34 @@ body{
     display:block;
 }
 
-.item{
+/* DRINK CARD */
+.drink{
+    background:#1e1e1e;
+    border-radius:12px;
+    margin-bottom:10px;
+    overflow:hidden;
+    cursor:pointer;
+}
+
+.drink-header{
     display:flex;
     justify-content:space-between;
-    background:#1e1e1e;
     padding:15px;
-    margin-bottom:10px;
-    border-radius:10px;
+}
+
+.drink-header:hover{
+    background:#2a2a2a;
+}
+
+.drink-info{
+    display:none;
+    padding:15px;
+    border-top:1px solid #333;
+    color:#ccc;
+}
+
+.drink.active .drink-info{
+    display:block;
 }
 
 .price{
@@ -123,8 +144,8 @@ body{
 /* FOOTER */
 .footer{
     text-align:center;
-    padding:30px;
-    color:#999;
+    padding:20px;
+    color:#aaa;
 }
 
 .age{
@@ -136,8 +157,10 @@ body{
 
 <body>
 
+<!-- SETTINGS BUTTON -->
 <div class="settings-btn" onclick="toggleSettings()">⚙️</div>
 
+<!-- SETTINGS MENU -->
 <div class="settings" id="settings">
     <div class="lang" onclick="setLang('de')">🇩🇪 Deutsch</div>
     <div class="lang" onclick="setLang('en')">🇬🇧 English</div>
@@ -145,36 +168,53 @@ body{
     <div class="lang" onclick="setLang('pl')">🇵🇱 Polski</div>
 </div>
 
+<!-- HEADER -->
 <div class="header">
-    <h1 id="title">VIBES CLUB</h1>
+    <h1>VIBES CLUB</h1>
 </div>
 
+<!-- TABS -->
 <div class="tabs">
-    <div id="tab-cocktails" class="tab active" onclick="openTab(event,'cocktails')">Cocktails</div>
-    <div id="tab-longdrinks" class="tab" onclick="openTab(event,'longdrinks')">Longdrinks</div>
-    <div id="tab-likor" class="tab" onclick="openTab(event,'likor')">Liköre</div>
-    <div id="tab-shots" class="tab" onclick="openTab(event,'shots')">Shots</div>
-    <div id="tab-flaschen" class="tab" onclick="openTab(event,'flaschen')">Flaschen</div>
+    <div class="tab active" onclick="openTab(event,'cocktails')">Cocktails</div>
+    <div class="tab" onclick="openTab(event,'longdrinks')">Longdrinks</div>
+    <div class="tab" onclick="openTab(event,'likor')">Liköre</div>
+    <div class="tab" onclick="openTab(event,'shots')">Shots</div>
+    <div class="tab" onclick="openTab(event,'flaschen')">Flaschen</div>
 </div>
 
+<!-- COCKTAILS -->
 <div id="cocktails" class="menu active">
+
+    <div class="drink" onclick="toggleDrink(this)">
+        <div class="drink-header">
+            <span>Mojito</span>
+            <span class="price">8,50€</span>
+        </div>
+        <div class="drink-info">
+            Состав:<br>
+            Добавь сюда ингредиенты<br><br>
+            Объём: 300 мл
+        </div>
+    </div>
+
 </div>
 
-<div id="longdrinks" class="menu">
-</div>
+<!-- LONGDRINKS -->
+<div id="longdrinks" class="menu"></div>
 
-<div id="likor" class="menu">
-</div>
+<!-- LIKÖRE -->
+<div id="likor" class="menu"></div>
 
-<div id="shots" class="menu">
-</div>
+<!-- SHOTS -->
+<div id="shots" class="menu"></div>
 
-<div id="flaschen" class="menu">
-</div>
+<!-- FLASCHEN -->
+<div id="flaschen" class="menu"></div>
 
+<!-- FOOTER -->
 <div class="footer">
     <div class="age">18+</div>
-    <div>VIBES CLUB</div>
+    VIBES CLUB
 </div>
 
 <script>
@@ -184,61 +224,23 @@ function toggleSettings(){
 
 function openTab(event, tab){
 
-    document.querySelectorAll(".menu").forEach(menu=>{
-        menu.classList.remove("active");
+    document.querySelectorAll(".menu").forEach(m=>{
+        m.classList.remove("active");
     });
 
-    document.querySelectorAll(".tab").forEach(btn=>{
-        btn.classList.remove("active");
+    document.querySelectorAll(".tab").forEach(t=>{
+        t.classList.remove("active");
     });
 
     document.getElementById(tab).classList.add("active");
     event.target.classList.add("active");
 }
 
+function toggleDrink(el){
+    el.classList.toggle("active");
+}
+
 function setLang(lang){
-
-    const text = {
-
-        de:{
-            cocktails:"Cocktails",
-            longdrinks:"Longdrinks",
-            likor:"Liköre",
-            shots:"Shots",
-            flaschen:"Flaschen"
-        },
-
-        en:{
-            cocktails:"Cocktails",
-            longdrinks:"Long Drinks",
-            likor:"Liqueurs",
-            shots:"Shots",
-            flaschen:"Bottles"
-        },
-
-        ru:{
-            cocktails:"Коктейли",
-            longdrinks:"Лонгдринки",
-            likor:"Ликёры",
-            shots:"Шоты",
-            flaschen:"Бутылки"
-        },
-
-        pl:{
-            cocktails:"Koktajle",
-            longdrinks:"Long Drinki",
-            likor:"Likiery",
-            shots:"Shoty",
-            flaschen:"Butelki"
-        }
-    };
-
-    document.getElementById("tab-cocktails").innerText = text[lang].cocktails;
-    document.getElementById("tab-longdrinks").innerText = text[lang].longdrinks;
-    document.getElementById("tab-likor").innerText = text[lang].likor;
-    document.getElementById("tab-shots").innerText = text[lang].shots;
-    document.getElementById("tab-flaschen").innerText = text[lang].flaschen;
-
     document.getElementById("settings").classList.remove("active");
 }
 </script>
@@ -246,4 +248,3 @@ function setLang(lang){
 </body>
 </html>
 ```
-
