@@ -16,7 +16,7 @@ body{
 /* HEADER */
 .header{
     text-align:center;
-    padding: 20px 70px; /* Добавили отступы по бокам, чтобы текст не налезал на кнопки */
+    padding: 20px 70px;
     background:#1a1a1a;
     border-bottom:1px solid #333;
     position:relative;
@@ -28,7 +28,7 @@ body{
 
 .header h1{
     margin:0;
-    font-size:24px; /* Чуть уменьшили размер, чтобы влезало на мобилках */
+    font-size:24px;
     letter-spacing: 1px;
 }
 
@@ -40,14 +40,14 @@ body{
     width:45px;
     height:45px;
     background:#222;
-    border: 1px solid #333; /* Добавили тонкую рамку */
+    border: 1px solid #333;
     border-radius: 12px;
     display:flex;
     align-items:center;
     justify-content:center;
     cursor:pointer;
     font-size:20px;
-    z-index: 1000; /* Кнопка всегда будет сверху */
+    z-index: 1000;
     transition: background 0.2s, border-color 0.2s;
 }
 
@@ -58,14 +58,14 @@ body{
     width:45px;
     height:45px;
     background:#222;
-    border: 1px solid #333; /* Добавили тонкую рамку */
+    border: 1px solid #333;
     border-radius: 12px;
     display:flex;
     align-items:center;
     justify-content:center;
     cursor:pointer;
     font-size:20px;
-    z-index: 1000; /* Кнопка всегда будет сверху */
+    z-index: 1000;
     transition: background 0.2s, border-color 0.2s;
 }
 
@@ -105,7 +105,6 @@ body{
 .lang:hover{
     background:#333;        
 }
-
 
 /* TABS */
 .tabs{
@@ -249,10 +248,31 @@ body{
     border:1px solid #333;
     max-height:90vh;
     overflow-y:auto;
+    position: relative; /* Чтобы крестик позиционировался внутри */
+}
+
+/* КНОПКА-КРЕСТИК ДЛЯ ЗАКРЫТИЯ */
+.close-modal-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    color: #aaa;
+    font-size: 22px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 5px;
+    transition: color 0.2s;
+}
+
+.close-modal-btn:hover {
+    color: #ff0000;
 }
 
 .modal-content h2{
     margin-top:0;
+    padding-right:30px; /* Чтобы заголовок не налезал на крестик */
 }
 
 .form-group{
@@ -401,8 +421,10 @@ body{
 
 <body>
 
+<!-- ADMIN BUTTON -->
 <div class="admin-btn" onclick="openAuthModal()" id="adminBtn">👤</div>
 
+<!-- SETTINGS -->
 <div class="settings-btn" onclick="toggleSettings()">⚙️</div>
 
 <div class="settings" id="settings">
@@ -412,10 +434,12 @@ body{
     <div class="lang" onclick="setLang('pl')">🇵🇱 Polski</div>
 </div>
 
+<!-- HEADER -->
 <div class="header">
     <h1 id="title">VIBES CLUB</h1>
 </div>
 
+<!-- TABS -->
 <div class="tabs" id="tabsContainer">
     <div class="tab active" onclick="openTab(event,'cocktails')" id="t1" data-text="cocktails">Cocktails</div>
     <div class="tab" onclick="openTab(event,'longdrinks')" id="t2" data-text="longdrinks">Longdrinks</div>
@@ -424,23 +448,30 @@ body{
     <div class="tab" onclick="openTab(event,'flaschen')" id="t5" data-text="flaschen">Flaschen</div>
 </div>
 
+<!-- MENUS -->
 <div id="cocktails" class="menu active"></div>
 <div id="longdrinks" class="menu"></div>
 <div id="likor" class="menu"></div>
 <div id="shots" class="menu"></div>
 <div id="flaschen" class="menu"></div>
 
+<!-- ADD DRINK BUTTON -->
 <div class="add-drink-container">
     <button class="btn-add-drink" onclick="openAddDrinkModal()">+ Добавить напиток</button>
 </div>
 
+<!-- FOOTER -->
 <div class="footer">
     <div>VIBES CLUB</div>
     <div class="address" data-text="address">Schachtweg 34, 38440 Wolfsburg</div>
 </div>
 
+<!-- AUTH MODAL -->
 <div id="authModal" class="modal">
     <div class="modal-content">
+        <!-- КРЕСТИК ТУТ -->
+        <button class="close-modal-btn" onclick="closeAuthModal()">✕</button>
+        
         <h2 id="authTitle">Admin Login</h2>
         <form class="auth-form" onsubmit="handleAuth(event)" id="authFormElement">
             <div class="form-group">
@@ -467,8 +498,12 @@ body{
     </div>
 </div>
 
+<!-- ADD/EDIT DRINK MODAL -->
 <div id="drinkModal" class="modal">
     <div class="modal-content">
+        <!-- И ТУТ КРЕСТИК -->
+        <button class="close-modal-btn" onclick="closeDrinkModal()">✕</button>
+        
         <h2 id="drinkModalTitle">Add Drink</h2>
         <form onsubmit="saveDrink(event)">
             <div class="form-group">
@@ -502,6 +537,7 @@ body{
     </div>
 </div>
 
+<!-- FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
@@ -528,44 +564,11 @@ let currentLang = localStorage.getItem("lang") || "de";
 let adminMode = false;
 let editingDrinkId = null;
 
-// СЛОВАРЬ ПЕРЕВОДОВ
 const translations = {
-    de: {
-        title: "VIBES CLUB",
-        cocktails: "Cocktails",
-        longdrinks: "Longdrinks",
-        likor: "Liköre",
-        shots: "Shots",
-        flaschen: "Flaschen",
-        address: "Schachtweg 34, 38440 Wolfsburg"
-    },
-    en: {
-        title: "VIBES CLUB",
-        cocktails: "Cocktails",
-        longdrinks: "Longdrinks",
-        likor: "Liqueurs",
-        shots: "Shots",
-        flaschen: "Bottles",
-        address: "Schachtweg 34, 38440 Wolfsburg"
-    },
-    ru: {
-        title: "VIBES CLUB",
-        cocktails: "Коктейли",
-        longdrinks: "Лонгдринки",
-        likor: "Ликёры",
-        shots: "Шоты",
-        flaschen: "Бутылки",
-        address: "Schachtweg 34, 38440 Wolfsburg"
-    },
-    pl: {
-        title: "VIBES CLUB",
-        cocktails: "Koktajle",
-        longdrinks: "Drinki długie",
-        likor: "Likier",
-        shots: "Shotki",
-        flaschen: "Butelki",
-        address: "Schachtweg 34, 38440 Wolfsburg"
-    }
+    de: { title: "VIBES CLUB", cocktails: "Cocktails", longdrinks: "Longdrinks", likor: "Liköre", shots: "Shots", flaschen: "Flaschen", address: "Schachtweg 34, 38440 Wolfsburg" },
+    en: { title: "VIBES CLUB", cocktails: "Cocktails", longdrinks: "Longdrinks", likor: "Liqueurs", shots: "Shots", flaschen: "Bottles", address: "Schachtweg 34, 38440 Wolfsburg" },
+    ru: { title: "VIBES CLUB", cocktails: "Коктейли", longdrinks: "Лонгдринки", likor: "Ликёры", shots: "Шоты", flaschen: "Бутылки", address: "Schachtweg 34, 38440 Wolfsburg" },
+    pl: { title: "VIBES CLUB", cocktails: "Koktajle", longdrinks: "Drinki długie", likor: "Likier", shots: "Shotki", flaschen: "Butelki", address: "Schachtweg 34, 38440 Wolfsburg" }
 };
 
 function toggleSettings(){
@@ -595,7 +598,6 @@ function setLang(lang){
             el.textContent = translations[lang][key];
         }
     });
-    
     document.getElementById("title").textContent = translations[lang].title;
 }
 
@@ -641,14 +643,12 @@ async function logout(){
     closeAuthModal();
 }
 
-// Переключение режима администратора
 function toggleAdminMode(){
     adminMode = !adminMode;
     toggleAdminUI(adminMode);
-    closeAuthModal(); // Закрываем окно профиля сразу после нажатия на Edit Mode
+    closeAuthModal(); 
 }
 
-// Показ/скрытие иконок редактирования и кнопки добавления
 function toggleAdminUI(enable){
     const button = document.querySelector(".btn-add-drink");
     const drinks = document.querySelectorAll(".drink");
@@ -682,7 +682,6 @@ function closeDrinkModal(){
 
 async function saveDrink(event){
     event.preventDefault();
-    
     const category = document.getElementById("drinkCategory").value;
     const name = document.getElementById("drinkName").value;
     const price = document.getElementById("drinkPrice").value;
@@ -690,14 +689,9 @@ async function saveDrink(event){
     
     try {
         if(editingDrinkId) {
-            await db.collection("drinks").doc(editingDrinkId).update({
-                name, price, info, category
-            });
+            await db.collection("drinks").doc(editingDrinkId).update({ name, price, info, category });
         } else {
-            await db.collection("drinks").add({
-                name, price, info, category,
-                createdAt: new Date()
-            });
+            await db.collection("drinks").add({ name, price, info, category, createdAt: new Date() });
         }
         loadDrinks();
         closeDrinkModal();
@@ -756,7 +750,6 @@ async function loadDrinks(){
                 </div>
                 <div class="drink-info">${drink.info}</div>
             `;
-            
             menu.appendChild(drinkEl);
         });
     } catch (error) {
@@ -769,9 +762,6 @@ auth.onAuthStateChanged((user) => {
         currentUser = user;
         showUserPanel();
         document.getElementById("adminBtn").classList.add("logged-in");
-        
-        document.getElementById("authFormElement").style.display = "none";
-        document.getElementById("userPanel").style.display = "block";
     }
 });
 
