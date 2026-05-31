@@ -461,7 +461,7 @@ body{
             <div class="user-info">
                 <div>Logged in as: <strong id="userEmail"></strong></div>
             </div>
-            <button class="admin-panel-btn" onclick="toggleAdminMode()">Edit Mode</button>
+            <button class="admin-panel-btn" id="editModeBtn" onclick="toggleAdminMode()">Edit Mode</button>
             <button class="logout-btn" onclick="logout()">Logout</button>
         </div>
     </div>
@@ -507,7 +507,7 @@ body{
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
 <script>
-// FIREBASE CONFIG - НОВЫЕ ДАННЫЕ
+// FIREBASE CONFIG
 const firebaseConfig = {
     apiKey: "AIzaSyDUMC5sE5zHZ2mQRlvQXkKaFQqM27sE5Jk",
     authDomain: "vibesclub-5ffea.firebaseapp.com",
@@ -617,8 +617,6 @@ async function handleAuth(event){
         const userCredential = await auth.signInWithEmailAndPassword(email, password);
         currentUser = userCredential.user;
         showUserPanel();
-        
-        // ЗДЕСЬ: Закрываем модальное окно после успешного входа
         closeAuthModal(); 
     } catch (error) {
         document.getElementById("authError").textContent = "Error: " + error.message;
@@ -643,21 +641,27 @@ async function logout(){
     closeAuthModal();
 }
 
+// Переключение режима администратора
 function toggleAdminMode(){
     adminMode = !adminMode;
     toggleAdminUI(adminMode);
+    closeAuthModal(); // Закрываем окно профиля сразу после нажатия на Edit Mode
 }
 
+// Показ/скрытие иконок редактирования и кнопки добавления
 function toggleAdminUI(enable){
     const button = document.querySelector(".btn-add-drink");
     const drinks = document.querySelectorAll(".drink");
+    const editModeBtn = document.getElementById("editModeBtn");
     
     if(enable) {
         button.classList.add("admin-mode");
         drinks.forEach(d => d.classList.add("admin-mode"));
+        if(editModeBtn) editModeBtn.textContent = "Exit Edit Mode";
     } else {
         button.classList.remove("admin-mode");
         drinks.forEach(d => d.classList.remove("admin-mode"));
+        if(editModeBtn) editModeBtn.textContent = "Edit Mode";
     }
 }
 
@@ -766,7 +770,6 @@ auth.onAuthStateChanged((user) => {
         showUserPanel();
         document.getElementById("adminBtn").classList.add("logged-in");
         
-        // ЗДЕСЬ: Если сессия сохранилась при перезагрузке, убираем форму
         document.getElementById("authFormElement").style.display = "none";
         document.getElementById("userPanel").style.display = "block";
     }
